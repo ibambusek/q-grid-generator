@@ -1,0 +1,59 @@
+<!doctype html>
+<html class="no-js" lang="">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Q-Grid Generator</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="css/main.css">
+</head>
+<body>
+
+  <h1>Q-Grid Generator</h1>
+  <h2>normal distribution</h2>
+  <form id="q-grid">
+    <div class="form-group">
+      <label>Blocks:</label>
+      <input type="number" id="input" value="40">
+    </div>
+    <div class="form-group">
+      <label>Scale ±:</label>
+      <input type="number" id="scale" value="4">
+    </div>
+    <div class="form-group">
+      <label>Flatten ratio:</label>
+      <input type="number" step="0.05" id="flatten_ratio" value="0.5">
+    </div>
+    <div class="form-group-buttons">
+      <input id="render" type="submit" value="Render">
+    </div>
+  </form>
+  <div id="result"></div>
+  <a href="https://github.com/ibambusek/q-grid-generator" target="_blank">Q-Grid Generator on Github</a>
+
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js"   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="   crossorigin="anonymous"></script>
+  <script type="text/javascript" src="js/gaussian.js"></script>
+  <script type="text/javascript" src="js/qgrid.js"></script>
+  <script>
+    /*****
+    ** Render Q-Grid
+    *****/
+    $(function(){
+      val = $("#input").val();
+      scale = $("#scale").val();
+      flatten_ratio = $("#flatten_ratio").val();
+      draw_grid_html(build_grid(val,scale,flatten_ratio),val,'result');
+    });
+
+    $('#q-grid').submit(function(e){
+      e.preventDefault();
+      val = $("#input").val();
+      scale = $("#scale").val();
+      flatten_ratio = $("#flatten_ratio").val();
+      draw_grid_html(build_grid(val,scale,flatten_ratio),val,'result');
+    });
+
+  </script>
+</body>
+</html>
